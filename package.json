@@ -1,0 +1,11 @@
+{
+  "name": "w2-p2018-09",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:KylianLM/w2-p2018-09.git",
+    "type": "git"
+  },
+  "author": "Kylian LE METTE <kylian.le.mette@gmail.com>",
+  "license": "MIT"
+}
