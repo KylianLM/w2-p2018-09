@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
 stylus = require('gulp-stylus'),
 postcss = require('gulp-postcss'),
-lost = require('lost'),
 autoprefixer = require('autoprefixer'),
 sourcemaps = require('gulp-sourcemaps'),
 browser_sync = require('browser-sync'),
