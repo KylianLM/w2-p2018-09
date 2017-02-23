@@ -397,6 +397,12 @@ chokidar@1.6.1:
   optionalDependencies:
     fsevents "^1.0.0"
 
+clean-css@^4.0.7:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.0.8.tgz#063dfd593404d3a3d1db494d4b6d0f378b0781b6"
+  dependencies:
+    source-map "0.5.x"
+
 cliui@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cliui/-/cliui-2.1.0.tgz#4b475760ff80264c762c3a1719032e91c7fea0d1"
@@ -1088,6 +1094,15 @@ gulp:
     tildify "^1.0.0"
     v8flags "^2.0.2"
     vinyl-fs "^0.3.0"
+
+gulp-clean-css:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/gulp-clean-css/-/gulp-clean-css-3.0.3.tgz#dcd6767413d51a9de9e4bc47b8ae7e02b43b1c4a"
+  dependencies:
+    clean-css "^4.0.7"
+    gulp-util "^3.0.8"
+    through2 "^2.0.3"
+    vinyl-sourcemaps-apply "^0.2.1"
 
 gulp-postcss:
   version "6.3.0"
@@ -2497,7 +2512,7 @@ source-map@^0.1.38, source-map@0.1.x:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@^0.5.1, source-map@^0.5.6, source-map@~0.5.1, source-map@0.X:
+source-map@^0.5.1, source-map@^0.5.6, source-map@~0.5.1, source-map@0.5.x, source-map@0.X:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
 
@@ -2652,7 +2667,7 @@ through2@^0.6.1:
     readable-stream ">=1.0.33-1 <1.1.0-0"
     xtend ">=4.0.0 <4.1.0-0"
 
-through2@^2.0.0, through2@2.X:
+through2@^2.0.0, through2@^2.0.3, through2@2.X:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
   dependencies:
