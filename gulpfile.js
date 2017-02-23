@@ -15,10 +15,10 @@ gulp.task('stylus', function() {
 	.pipe(sourcemaps.init())
 	.pipe(stylus())
 	.pipe(postcss([
-		autoprefixer(),
-		cleanCSS()
+		autoprefixer()
 		]))
-	.pipe(sourcemaps.write())
+	.pipe(cleanCSS())
+	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest( dist + './assets/css'))
 	.pipe(reload({ stream:true }));
 });
