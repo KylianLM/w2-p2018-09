@@ -1,0 +1,20 @@
+{
+  "name": "w2-p2018-09",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:KylianLM/w2-p2018-09.git",
+    "type": "git"
+  },
+  "author": "Kylian LE METTE <kylian.le.mette@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^6.7.5",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-postcss": "^6.3.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-stylus": "^2.6.0"
+  }
+}
