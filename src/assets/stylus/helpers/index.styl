@@ -1,2 +1,8 @@
 @import 'variables'
 @import 'BEM'
+
+if $enable_reset
+	@require "reset"
+
+body
+	font-family 'Open Sans'

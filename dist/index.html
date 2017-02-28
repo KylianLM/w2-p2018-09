@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
-<meta name="description" content="">
-  <link rel="stylesheet" href="assets/css/app.css">
-  <style type="text/css">
-    html, body { height: 100%; margin: 0; padding: 0; }
-    #map { height: 100%; }
-</style>
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style type="text/css">
+        html, body { height: 100%; margin: 0; padding: 0; }
+        #map { height: 100%; }
+    </style>
 </head>
 <body>
-<div class="Login">
+    <div class="Login">
+        <div class="Login__flex">
+            <div class="Login__logo">
+                <img src="/assets/img/logo.png" alt="" 
+                srcset="/assets/img/logo@2x.png 2x" >
+            </div>
+            <button class="Login__facebook btn">Facebook</button>
+            <button class="Login__google btn">Google</button>
+            <div class="Login__buttons">
+                <button class="Login__demi btn btn--light">S'inscrire</button>
+                <button class="Login__demi btn btn--light">Se connecter</button>
+            </div>
+        </div>
+    </div>
+    <div id="map"></div>
 
-  </div>
-  <div id="map"></div>
-
-  <script src="assets/js/app.js"></script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwi04opaHZwRc1tMZ091xGWGbXU3TdXGs&callback=init">
+    <script src="assets/js/app.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwi04opaHZwRc1tMZ091xGWGbXU3TdXGs&callback=init">
 </script>
 </body>
 </html>

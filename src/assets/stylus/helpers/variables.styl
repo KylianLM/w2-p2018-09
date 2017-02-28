@@ -1,1 +1,34 @@
 $primary-color = #295EE6
+
+/*
+*   Reset
+*/
+$enable_reset ?= true
+
+
+$unit ?= 4
+
+/* 
+*	Font-Size 
+*	px to rem ($px) 
+*	px to em ($px_em)
+*/
+
+$base_font_size ?= 16
+$base_font_size_ems = unit($base_font_size / 16, em)
+$px = unit(1 / $base_font_size, rem)
+$px_em = unit(1 / $base_font_size, em)
+
+/*
+*	Padding
+*	Margin
+*/
+   
+$padding ?= unit($unit, px)
+$margin ?= unit($unit, px)
+
+$border_box ?= true
+
+if $border_box
+	*
+		box-sizing border-box
