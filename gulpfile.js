@@ -11,7 +11,7 @@ const src = "./src/"
 const dist = "./dist/";
 
 gulp.task('stylus', function() {
-	return gulp.src( src + './assets/stylus/**/*.styl')
+	return gulp.src( src + './assets/stylus/app.styl')
 	.pipe(sourcemaps.init())
 	.pipe(stylus())
 	.pipe(postcss([
