@@ -62,24 +62,28 @@
     </div>
 
 </div>
-<div class="Login">
+<div class="Login" id="login">
     <div class="Login__flex">
         <div class="Login__logo">
             <img class="logo__wheel" src="/assets/img/wheel.png" alt="" 
-            srcset="/assets/img/wheel@2x.png 2x" >
+            srcset="/assets/img/wheel@2x.png 2x,/assets/img/wheel@3x.png 3x" >
             <h1 class="logo__text">Vélib Marker</h1>
         </div>
-        <button class="Login__facebook btn">Facebook</button>
-        <button class="Login__google btn">Google</button>
+        <button type="button" class="Login__facebook btn"><img class="Login__icon" src="assets/img/Facebook.png"
+        srcset="/assets/img/Facebook@2x.png 2x,/assets/img/Facebook@3x.png 3x" alt="">Facebook</button>
+        <button type="button" class="Login__google btn"><img class="Login__icon" src="assets/img/Google.png"
+        srcset="/assets/img/Google@2x.png 2x, /assets/img/Google@3x.png 3x" alt="">Google</button>
         <div class="Login__buttons">
-            <button class="Login__demi btn btn--light" id="openModalRegister">S'inscrire</button>
-            <button class="Login__demi btn btn--light" id="openModalLogin">Se connecter</button>
+            <button type="button" class="Login__demi btn btn--light" id="openModalRegister">S'inscrire</button>
+            <button type="button" class="Login__demi btn btn--light" id="openModalLogin">Se connecter</button>
         </div>
         <p class="Login__text">En créant un compte, j'accepte les <span class="bold">Conditions générales</span>, les <span class="bold">Conditions de service</span> et 
             la <span class="bold">Politique de confidentialité</span>.</p>
         </div>
     </div>
-    <div id="map"></div>
+    <div id="map">
+        
+    </div>
 
     <script src="assets/js/app.js"></script>
     <script async defer

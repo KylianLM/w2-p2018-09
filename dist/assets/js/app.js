@@ -23,12 +23,15 @@ function getXMLHttpRequest() {
 }
 
 // Modal Js
-var modalLogin = document.getElementById('modalLogin'),
-	modalRegister = document.getElementById('modalRegister'),
-	btnRegister = document.getElementById('openModalRegister'),
-	btnLogin = document.getElementById('openModalLogin'),
-	closeLogin = modalLogin.querySelector('.close'),
-	closeRegister = modalRegister.querySelector('.close');
+var Login = document.getElementById('login'),
+modalLogin = document.getElementById('modalLogin'),
+modalRegister = document.getElementById('modalRegister'),
+btnRegister = document.getElementById('openModalRegister'),
+btnLogin = document.getElementById('openModalLogin'),
+btnConnect = modalLogin.querySelector('input[type="submit"]'),
+btnSignIn = modalRegister.querySelector('input[type="submit"]'),
+closeLogin = modalLogin.querySelector('.close'),
+closeRegister = modalRegister.querySelector('.close');
 
 btnLogin.addEventListener('click', function () {
 	modalLogin.style.display = "block";
@@ -44,25 +47,70 @@ closeRegister.addEventListener('click', function () {
 	modalRegister.style.display =  "none";
 })
 
+btnConnect.addEventListener('click', function () {
+	modalLogin.style.display =  "none";
+	Login.style.display = "none";
+})
+
+
+
 // Init Google Maps
 function init() {
+	StationOverlay = new google.maps.OverlayView();
+
 	navigator.geolocation.getCurrentPosition(function(pos) {
-		var crd = pos.coords;
+
+		sessionStorage.setItem("latitude",pos.coords.latitude);
+		sessionStorage.setItem("longitude",pos.coords.longitude);
+
 		map = new google.maps.Map(document.getElementById('map'), {
-			center: {lat: crd.latitude, lng: crd.longitude},
-			zoom: 15
+			center: {lat: parseFloat(sessionStorage.latitude), lng: parseFloat(sessionStorage.longitude)},
+			zoom: 14
 		});
+
+		var myPosition = new google.maps.Marker({
+			position: {lat: parseFloat(sessionStorage.latitude), lng: parseFloat(sessionStorage.longitude)},
+			title:"Vous êtes ici!"
+		});
+
+		myPosition.setMap(map);
+
+		getVelib();
 	});
+}
+
+function getVelib() {
 	var xhr = getXMLHttpRequest();
+
+	xhr.open("GET",
+		"https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&lang=fr&facet=banking&facet=bonus&facet=status&facet=contract_name&geofilter.distance="+sessionStorage.latitude+"%2C+"+sessionStorage.longitude+"%2C5000",
+		true);
+	xhr.send(null);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			console.log(JSON.parse(xhr.responseText));
+			var data = JSON.parse(xhr.responseText);
+			for(item of data.records) {
+				var newStation = new google.maps.Marker({
+					position: {lat:item.geometry.coordinates[1],lng:item.geometry.coordinates[0]},
+					title: ""
+				})
+
+				newStation.setMap(map);
+			}
 		}
 	};
+}
 
-	xhr.open("GET",
-		"https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&lang=fr&facet=banking&facet=bonus&facet=status&facet=contract_name&geofilter.distance=48.9093300219%2C+2.35805056574%2C300",
-		true);
-	xhr.send(null);
+
+var overlay;
+
+function StationOverlay(bounds,img,map) {
+	this.bounds_ = bounds;
+	this.image_ = image;
+	this.map_ = map;
+
+	this.div_ = null;
+
+	this.setMap(map);
 }
