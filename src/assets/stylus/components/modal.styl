@@ -1,0 +1,54 @@
+
+.Modal
+    display none 
+    position relative 
+    z-index 200 
+    left 0
+    top 0
+    width 100% 
+    height 100% 
+    overflow auto 
+    background-color rgb(255,255,255)
+    animation animatetop .4s
+    +e(content)
+        margin 0 auto
+        width 90%
+        height 100%
+        display flex
+        flex-direction column
+        justify-content center
+    +e(title)
+        font-size 24 * $px
+        color $grey
+        line-height 33 * $px
+    +e(subtitle)
+        font-size 18 * $px
+        color rgba($grey, .5)
+        line-height 25 * $px
+    +e(form)
+        width 100%
+        margin-top 15 * $margin
+    +e(btn)
+        margin-top  7 * $margin
+        margin-bottom 17 * $margin
+    +e(text)
+        text-align center
+        font-size 14 * $px
+        line-height 19 * $px
+        
+.close
+    position absolute
+    top 4 * $padding 
+    right 4 * $padding
+    color #aaa
+    font-size: 28 * $px
+    font-weight 500
+    &:hover, &:focus
+        color black
+        text-decoration 
+        cursor pointer
+
+@keyframes animatetop {
+    from {top: -100%; opacity: 0}
+    to {top: 0; opacity: 1}
+}
