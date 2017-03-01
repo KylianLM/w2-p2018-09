@@ -1,6 +1,6 @@
 .logo
 	+e(wheel)
-		animation rotateLogo 2s infinite ease-out
+		animation rotateLogo 1s ease-out
 	+e(text)
 		color: #FFF
 		font-size 22 * $px
@@ -9,6 +9,5 @@
 
 @keyframes rotateLogo {
     0% {transform: rotate(0deg)}
-    75% {transform: rotate(20deg)}
-    100% {transform: rotate(0deg)}
+    100% {transform: rotate(360deg)}
 }
