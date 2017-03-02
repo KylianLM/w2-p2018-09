@@ -62,11 +62,22 @@ btnSignIn.addEventListener('click', function (e) {
 
 //MAPS Navigation
 
-var btnMyPos = document.getElementById('myPosition');
+var btnMyPos = document.getElementById('myPosition'),
+btnNewPos = document.getElementById('newPosition'),
+modalPos = document.getElementById('modalPosition'),
+closePos = modalPos.querySelector('.close');
 
 btnMyPos.addEventListener('click', function () {
 	getMyPosition();
 });
+
+btnNewPos.addEventListener('click', function () {
+	modalPos.style.display = "block";
+})
+
+closePos.addEventListener('click', function () {
+	modalPos.style.display = "none";
+})
 
 // Init Google Maps
 function init() {
@@ -77,33 +88,62 @@ function init() {
 		zoom: 15,
 		disableDefaultUI: true
 	});
+
+	var input = /** @type {!HTMLInputElement} */(
+		document.getElementById('inputPos'));;
+
+	var autocomplete = new google.maps.places.Autocomplete(input),
+	place;
+	autocomplete.addListener('place_changed', function() {
+		place = autocomplete.getPlace();
+	});
+
+	document.getElementById('validatePos').addEventListener('click', function (e) {
+		e.preventDefault();
+		if (!place.geometry) {
+			window.alert("Autocomplete's returned place contains no geometry");
+			return;
+		} else {
+			sessionStorage.setItem("latitude",place.geometry.location.lat());
+			sessionStorage.setItem("longitude",place.geometry.location.lng());
+			changePosition(place.geometry.location);
+			modalPos.style.display = "none";
+		}
+	})
 }
 
 function clearOverlays() {
-  for (var i = 0; i < markersArray.length; i++ ) {
-    markersArray[i].setMap(null);
-  }
-  markersArray.length = 0;
+	for (var i = 0; i < markersArray.length; i++ ) {
+		markersArray[i].setMap(null);
+	}
+	markersArray.length = 0;
 }
 
 function getMyPosition() {
 	navigator.geolocation.getCurrentPosition(function (pos) {
 		sessionStorage.setItem("latitude",pos.coords.latitude);
 		sessionStorage.setItem("longitude",pos.coords.longitude);
-		map.panTo(new google.maps.LatLng(sessionStorage.latitude, sessionStorage.longitude));
 
-		clearOverlays();
-
-		var myPosition = new google.maps.Marker({
-			position: {lat: parseFloat(sessionStorage.latitude), lng: parseFloat(sessionStorage.longitude)},
-			title:"Vous êtes ici!"
-		});
-
-		myPosition.setMap(map);
-		markersArray.push(myPosition);
-
-		getVelib();
+		var crd = {lat:parseFloat(sessionStorage.latitude),lng: parseFloat(sessionStorage.longitude)};
+		changePosition(crd,crd,true)
 	})
+}
+
+function changePosition(LatLng, myPosition = null,clear = true) {
+	if (clear) {
+		clearOverlays();
+	}
+	map.panTo(LatLng);
+
+	var myPosition = new google.maps.Marker({
+		position: myPosition,
+		title:"Vous êtes ici!"
+	});
+
+	myPosition.setMap(map);
+	markersArray.push(myPosition);
+
+	getVelib();
 }
 
 function getVelib() {
