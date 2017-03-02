@@ -81,10 +81,8 @@ function clearOverlays() {
 
 function getMyPosition() {
 	navigator.geolocation.getCurrentPosition(function (pos) {
-		debugger;
 		sessionStorage.setItem("latitude",pos.coords.latitude);
 		sessionStorage.setItem("longitude",pos.coords.longitude);
-		debugger;
 		map.panTo(new google.maps.LatLng(sessionStorage.latitude, sessionStorage.longitude));
 
 		clearOverlays();
