@@ -1,0 +1,21 @@
+.Map
+	background url(../img/map.jpg) no-repeat center
+	background-size cover
+	height 100%
+	+e(gMap)
+		height 100%
+	+e(nav)
+		display flex
+		justify-content space-between
+		width 90%
+		z-index 10
+		transform translate(-50%,0)
+		left 50%
+		position fixed
+		bottom 8 * $margin
+	+e(pos)
+		temp = 4 * $margin
+		width "calc(calc(100% - 60px) - %s)" % temp
+	+e(gps)
+		color: black
+		font-size 26 * $px

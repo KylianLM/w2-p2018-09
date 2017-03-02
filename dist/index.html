@@ -26,8 +26,6 @@
     <meta name="theme-color" content="#ffffff">
 
     <style type="text/css">
-        html, body { height: 100%; margin: 0; padding: 0; }
-        #map { height: 100%; }
     </style>
 </head>
 <body>
@@ -81,8 +79,12 @@
             la <span class="bold">Politique de confidentialité</span>.</p>
         </div>
     </div>
-    <div id="map">
-        
+    <div class="Map">
+    <div class="Map__nav">
+       <button class="Map__pos btn btn--primary">Saisir une position</button> 
+       <button class="Map__gps btn btn--square btn--white" id="myPosition"><span class="icon icon-geo">&#xe900;</span></button>
+    </div>
+    <div id="map" class="Map__gMap"></div>
     </div>
 
     <script src="assets/js/app.js"></script>

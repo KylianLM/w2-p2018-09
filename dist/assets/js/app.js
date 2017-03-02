@@ -1,4 +1,5 @@
 var map,
+markersArray = [],
 dataAPI = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&';
 
 function getXMLHttpRequest() {
@@ -52,21 +53,41 @@ btnConnect.addEventListener('click', function () {
 	Login.style.display = "none";
 })
 
+//MAPS Navigation
 
+var btnMyPos = document.getElementById('myPosition');
+
+btnMyPos.addEventListener('click', function () {
+	getMyPosition();
+});
 
 // Init Google Maps
 function init() {
 	StationOverlay = new google.maps.OverlayView();
 
-	navigator.geolocation.getCurrentPosition(function(pos) {
+	map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat: 48.866667, lng: 2.333333},
+		zoom: 15,
+		disableDefaultUI: true
+	});
+}
 
+function clearOverlays() {
+  for (var i = 0; i < markersArray.length; i++ ) {
+    markersArray[i].setMap(null);
+  }
+  markersArray.length = 0;
+}
+
+function getMyPosition() {
+	navigator.geolocation.getCurrentPosition(function (pos) {
+		debugger;
 		sessionStorage.setItem("latitude",pos.coords.latitude);
 		sessionStorage.setItem("longitude",pos.coords.longitude);
+		debugger;
+		map.panTo(new google.maps.LatLng(sessionStorage.latitude, sessionStorage.longitude));
 
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: {lat: parseFloat(sessionStorage.latitude), lng: parseFloat(sessionStorage.longitude)},
-			zoom: 14
-		});
+		clearOverlays();
 
 		var myPosition = new google.maps.Marker({
 			position: {lat: parseFloat(sessionStorage.latitude), lng: parseFloat(sessionStorage.longitude)},
@@ -74,9 +95,10 @@ function init() {
 		});
 
 		myPosition.setMap(map);
+		markersArray.push(myPosition);
 
 		getVelib();
-	});
+	})
 }
 
 function getVelib() {
@@ -95,8 +117,8 @@ function getVelib() {
 					position: {lat:item.geometry.coordinates[1],lng:item.geometry.coordinates[0]},
 					title: ""
 				})
-
 				newStation.setMap(map);
+				markersArray.push(newStation);
 			}
 		}
 	};
