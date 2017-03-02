@@ -48,8 +48,15 @@ closeRegister.addEventListener('click', function () {
 	modalRegister.style.display =  "none";
 })
 
-btnConnect.addEventListener('click', function () {
+btnConnect.addEventListener('click', function (e) {
+	e.preventDefault();
 	modalLogin.style.display =  "none";
+	Login.style.display = "none";
+})
+
+btnSignIn.addEventListener('click', function (e) {
+	e.preventDefault();
+	modalRegister.style.display =  "none";
 	Login.style.display = "none";
 })
 
