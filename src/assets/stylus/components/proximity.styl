@@ -1,0 +1,41 @@
+.Proximity
+	+e(title)
+		font-size 14 * $px
+		color $grey
+		line-height 19 * $px
+		text-align center
+		font-weight 700
+		padding-top 10px
+	+e(close)
+		margin 0 auto
+	+e(list)
+		display flex
+		flex-direction column
+	+e(item)
+		display flex
+		align-items center
+		min-height 80px
+		border-bottom 1px solid rgba($grey, .3)
+	+e(info)
+		flex 2
+		display flex
+		flex-direction column
+		justify-content space-between
+		min-height 100%
+	+e(address)
+		color $grey
+	+e(nbStation)
+		color rgba($grey,.5)
+	+e(nbPlace)
+		color #333DAA
+		flex 1
+		font-size 26 * $px
+		text-align center
+		+m(none)
+			color: #FF2D55
+	+e(star)
+		flex 1
+		text-align center
+		color #D8D8D8
+		+m(active)
+			color #333DAA
