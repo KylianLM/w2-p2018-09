@@ -1,5 +1,55 @@
 .Login
+	position absolute
+	top 0
+	left 0
 	width 100vw
 	height 100vh
-	background $primary-color
+	background linear-gradient(180deg,rgba($primary-color,.5),rgba($primary-color,.8),rgba($primary-color,1),rgba($primary-color,1),$primary-color)
 	z-index 100
+	+e(flex)
+		display flex
+		flex-direction column
+		align-items center
+		width 90%
+		height 100%
+		margin 0 auto
+		+above(3)
+			width 30%
+			min-width 330px
+			height 70%
+			margin-top 5%
+	+e(logo)
+		height 50%
+		display flex
+		flex-direction column
+		justify-content center
+		align-items center
+	+e(facebook)
+		position relative
+		background #3C5B97
+		width 100%
+	+e(google)
+		position relative
+		background #4587F0
+		width 100%
+		margin-top 4 * $margin
+	+e(icon)
+		position absolute
+		transform translate(-50%,-50%)
+		left 15%
+		top 50%
+	+e(buttons)
+		display flex
+		justify-content space-between
+		width 100%
+		margin-top 4 * $margin
+	+e(demi)
+		width calc(50% - 8px)
+		background #FFF
+	+e(text)
+		color #FFF
+		text-align center
+		font-size 14 * $px
+		height 10%
+		margin-top 8 * $margin
+		line-height 19 * $px
