@@ -1,4 +1,26 @@
 .Proximity
+	+e(header)
+		display none
+		background $primary-color
+		height 200px
+		padding 4 * $padding 
+		+above(3)
+			display flex
+			justify-content space-between
+		.icon
+			color #FFF
+			position relative
+			font-size 24px
+			margin-right 4*$margin
+		.icon-ico-notification span
+			position absolute
+			top 0
+			right 0
+			color red
+	+e(nav)
+		align-self flex-end
+		ul
+			display flex
 	+e(title)
 		font-size 14 * $px
 		color $grey
@@ -6,8 +28,15 @@
 		text-align center
 		font-weight 700
 		padding-top 10px
+		+above(3)
+			background $primary-color
+			color #FFF
+			border-bottom 1px solid #FFF
+			padding-bottom 25px
 	+e(close)
 		margin 0 auto
+		+above(3)
+			display none
 	+e(list)
 		display flex
 		flex-direction column
