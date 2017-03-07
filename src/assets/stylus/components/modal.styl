@@ -14,10 +14,17 @@
         top auto
         height auto
         animation animatebottom .4s
-        & Modal__content
-            height auto
+        +above(3)
+            bottom auto
+            right 0
+            left auto
+            top 0
+            width 400px
+            height 100vh
+            animation animateright .4s
         .Modal__content
             width 100%
+            height auto
     +m(transparence)
         background rgba(255,255,255,.9)
     +e(content)
@@ -68,4 +75,9 @@
 @keyframes animatebottom {
     from {bottom: -100%; opacity 0}
     to {bottom: 0%; opacity 1}
+}
+
+@keyframes animateright {
+    from {right: -100%; opacity 0}
+    to {right: 0%; opacity 1}
 }

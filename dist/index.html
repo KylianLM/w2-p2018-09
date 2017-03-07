@@ -45,15 +45,15 @@
     </div>
     <div class="Modal" id="modalRegister">
         <div class="Modal__content">
-         <span class="close">&times;</span>
-         <h4 class="Modal__title">Nouveau Compte</h4>
-         <form class="Modal__form" action="">
-             <input type="text" class="input" placeholder="Nom">
-             <input type="email" class="input" placeholder="Email">
-             <input type="password" class="input" placeholder="Mot de passe">
-             <input type="submit" value="S'inscrire" class="Modal__btn btn btn--primary btn--large">
-         </form>
-         <p class="Modal__text">En créant un compte, j'accepte les <span class="bold">Conditions générales</span>, les <span class="bold">Conditions de service</span> et 
+           <span class="close">&times;</span>
+           <h4 class="Modal__title">Nouveau Compte</h4>
+           <form class="Modal__form" action="">
+               <input type="text" class="input" placeholder="Nom">
+               <input type="email" class="input" placeholder="Email">
+               <input type="password" class="input" placeholder="Mot de passe">
+               <input type="submit" value="S'inscrire" class="Modal__btn btn btn--primary btn--large">
+           </form>
+           <p class="Modal__text">En créant un compte, j'accepte les <span class="bold">Conditions générales</span>, les <span class="bold">Conditions de service</span> et 
             la <span class="bold">Politique de confidentialité</span>.</p>
         </div>
     </div>
@@ -71,11 +71,23 @@
 
     <div class="Modal Modal--bottom Proximity" id="modalProx">
         <div class="Modal__content">
+            <div class="Proximity__header">
+                            <nav class="Proximity__nav">
+                    <ul>
+                        <li class="icon icon-ico-personal">&#xe902;</li>
+                        <li class="icon icon-ico-notification">&#xe903;<span>&#xe904;</span></li>
+                    </ul>
+                </nav>
+                <div>
+                    <img class="logo__wheel" src="/assets/img/wheel.png" alt="" 
+                    srcset="/assets/img/wheel@2x.png 2x,/assets/img/wheel@3x.png 3x" >
+                </div>
+            </div>
             <h4 class="Proximity__title" id="closeProx">4 stations à proximité</h4>
             <span class="Proximity__close" id="closeProx2"><img src="/assets/img/close.png" alt=""></span>
             <ul class="Proximity__list">
                 <li class="Proximity__item">
-                <div class="Proximity__nbPlace Proximity__nbPlace--none">0</div>
+                    <div class="Proximity__nbPlace Proximity__nbPlace--none">0</div>
                     <div class="Proximity__info">
                         <div class="Proximity__address">62 rue Saint George <br>75004, Paris</div>
                         <div class="Proximity__nbStation">Station 355</div>
@@ -85,7 +97,7 @@
                     </div>
                 </li>
                 <li class="Proximity__item">
-                <div class="Proximity__nbPlace">12</div>
+                    <div class="Proximity__nbPlace">12</div>
                     <div class="Proximity__info">
                         <div class="Proximity__address">5 rue de la Gaîté<br>75003, Paris</div>
                         <div class="Proximity__nbStation">Sation 356</div>
@@ -96,7 +108,7 @@
                     </div>
                 </li>
                 <li class="Proximity__item">
-                <div class="Proximity__nbPlace">2</div>
+                    <div class="Proximity__nbPlace">2</div>
                     <div class="Proximity__info">
                         <div class="Proximity__address">56 rue Vieille du Temple <br>75004, Paris</div>
                         <div class="Proximity__nbStation">Station 357</div>
@@ -106,7 +118,7 @@
                     </div>
                 </li>
                 <li class="Proximity__item">
-                <div class="Proximity__nbPlace">6</div>
+                    <div class="Proximity__nbPlace">6</div>
                     <div class="Proximity__info">
                         <div class="Proximity__address">3 rue des Rosiers, <br>75005, Paris</div>
                         <div class="Proximity__nbStation">Station 358</div>
@@ -141,15 +153,15 @@
             </div>
             <div class="Map">
                 <div class="Map__nav">
-                 <button class="Map__pos btn btn--primary" id="newPosition">Saisir une position</button> 
-                 <button class="Map__gps btn btn--square btn--white" id="myPosition"><span class="icon icon-geo">&#xe900;</span></button>
-             </div>
-             <div id="map" class="Map__gMap"></div>
-         </div>
+                   <button class="Map__pos btn btn--primary" id="newPosition">Saisir une position</button> 
+                   <button class="Map__gps btn btn--square btn--white" id="myPosition"><span class="icon icon-geo">&#xe900;</span></button>
+               </div>
+               <div id="map" class="Map__gMap"></div>
+           </div>
 
-         <script src="assets/js/app.js"></script>
-         <script async defer
-         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwi04opaHZwRc1tMZ091xGWGbXU3TdXGs&callback=init&libraries=places">
-     </script>
- </body>
- </html>
+           <script src="assets/js/app.js"></script>
+           <script async defer
+           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwi04opaHZwRc1tMZ091xGWGbXU3TdXGs&callback=init&libraries=places">
+       </script>
+   </body>
+   </html>

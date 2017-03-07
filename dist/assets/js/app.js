@@ -79,6 +79,7 @@ btnMyPos.addEventListener('click', function () {
 
 btnNewPos.addEventListener('click', function () {
 	modalPos.style.display = "block";
+	document.getElementById('modalProx').style.display = "none";
 })
 
 closePos.addEventListener('click', function () {
@@ -184,16 +185,12 @@ function changePosition(LatLng, myPosition = null,clear = true) {
 		title:"Vous êtes ici!"
 	});
 
-	myPosition.setMap(map);
-	markersArray.push(myPosition);
-
 	getVelib();
 
 	var bounds = new google.maps.LatLngBounds(
 		new google.maps.LatLng(LatLng),
-		new google.maps.LatLng(LatLng.lat + 0.008652, LatLng.lng + 0.001524));
-	var srcImage = 'https://developers.google.com/maps/documentation/' +
-	'javascript/examples/full/images/talkeetna.png';
+		new google.maps.LatLng(LatLng.lat + 0.000800, LatLng.lng + 0.001000));
+	var srcImage = '/assets/img/ico-fill.png';
 
 	overlay = new StationOverlay(bounds,srcImage,map);
 	//google.maps.event.addDomListener(overlay, 'click', function(){alert('hi')});
