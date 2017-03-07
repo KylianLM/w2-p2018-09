@@ -3,8 +3,7 @@ markersArray = [],
 dataAPI = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&';
 
 function getXMLHttpRequest() {
-	var xhr = null;
-	
+	var xhr = null;	
 	if (window.XMLHttpRequest || window.ActiveXObject) {
 		if (window.ActiveXObject) {
 			try {
@@ -60,6 +59,13 @@ btnSignIn.addEventListener('click', function (e) {
 	Login.style.display = "none";
 })
 
+document.getElementById('closeProx').addEventListener('click', function () {
+	document.getElementById('modalProx').style.display = "none";
+});
+document.getElementById('closeProx2').addEventListener('click', function () {
+	document.getElementById('modalProx').style.display = "none";
+})
+
 //MAPS Navigation
 
 var btnMyPos = document.getElementById('myPosition'),
@@ -78,10 +84,48 @@ btnNewPos.addEventListener('click', function () {
 closePos.addEventListener('click', function () {
 	modalPos.style.display = "none";
 })
-
 // Init Google Maps
 function init() {
-	StationOverlay = new google.maps.OverlayView();
+	StationOverlay.prototype = new google.maps.OverlayView();
+
+
+	StationOverlay.prototype.onAdd = function () {
+		var div = document.createElement('div');
+		div.style.position = 'absolute';
+
+		// Create the img element and attach it to the div.
+		var img = document.createElement('img');
+		img.src = this.image_;
+		img.style.width = '100%';
+		img.style.height = '100%';
+		img.style.position = 'absolute';
+		div.appendChild(img);
+
+		this.div_ = div;
+
+		var panes = this.getPanes();
+		panes.overlayLayer.appendChild(div);
+	}
+
+	StationOverlay.prototype.onRemove = function() {
+		this.div_.parentNode.removeChild(this.div_);
+		this.div_ = null;
+	};
+
+	StationOverlay.prototype.draw = function() {
+		var overlayProjection = this.getProjection();
+
+		var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+		var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+
+		var div = this.div_;
+		div.style.left = sw.x + 'px';
+		div.style.top = ne.y + 'px';
+		div.style.width = (ne.x - sw.x) + 'px';
+		div.style.height = (sw.y - ne.y) + 'px';
+		
+		this.getPanes().overlayMouseTarget.appendChild(div);
+	};
 
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: 48.866667, lng: 2.333333},
@@ -144,35 +188,52 @@ function changePosition(LatLng, myPosition = null,clear = true) {
 	markersArray.push(myPosition);
 
 	getVelib();
+
+	var bounds = new google.maps.LatLngBounds(
+		new google.maps.LatLng(LatLng),
+		new google.maps.LatLng(LatLng.lat + 0.008652, LatLng.lng + 0.001524));
+	var srcImage = 'https://developers.google.com/maps/documentation/' +
+	'javascript/examples/full/images/talkeetna.png';
+
+	overlay = new StationOverlay(bounds,srcImage,map);
+	//google.maps.event.addDomListener(overlay, 'click', function(){alert('hi')});
 }
 
 function getVelib() {
 	var xhr = getXMLHttpRequest();
 
 	xhr.open("GET",
-		"https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&lang=fr&facet=banking&facet=bonus&facet=status&facet=contract_name&geofilter.distance="+sessionStorage.latitude+"%2C+"+sessionStorage.longitude+"%2C5000",
+		"https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&lang=fr&facet=banking&facet=bonus&facet=status&facet=contract_name&geofilter.distance="+sessionStorage.latitude+"%2C+"+sessionStorage.longitude+"%2C10000",
 		true);
 	xhr.send(null);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			var data = JSON.parse(xhr.responseText);
+			var data = JSON.parse(xhr.responseText),
+			srcImages =['/assets/img/bike.png','/assets/img/nobike.png'];
 			for(item of data.records) {
 				var newStation = new google.maps.Marker({
 					position: {lat:item.geometry.coordinates[1],lng:item.geometry.coordinates[0]},
 					title: ""
 				})
-				newStation.setMap(map);
+
+				var bounds = new google.maps.LatLngBounds(
+					new google.maps.LatLng(item.geometry.coordinates[1],item.geometry.coordinates[0]),
+					new google.maps.LatLng(item.geometry.coordinates[1] + 0.000952, item.geometry.coordinates[0] + 0.001524));
+				var srcImage = srcImages[Math.floor(Math.random()*srcImages.length)];
+
+				overlay = new StationOverlay(bounds,srcImage,map);
 				markersArray.push(newStation);
 			}
+
+			document.getElementById('modalProx').style.display = "block";
 		}
 	};
 }
-
-
 var overlay;
 
-function StationOverlay(bounds,img,map) {
+/** @constructor */
+function StationOverlay(bounds,image,map) {
 	this.bounds_ = bounds;
 	this.image_ = image;
 	this.map_ = map;
@@ -181,3 +242,6 @@ function StationOverlay(bounds,img,map) {
 
 	this.setMap(map);
 }
+
+
+

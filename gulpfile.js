@@ -1,11 +1,12 @@
 var gulp = require('gulp'),
-stylus = require('gulp-stylus'),
-postcss = require('gulp-postcss'),
-autoprefixer = require('autoprefixer'),
-sourcemaps = require('gulp-sourcemaps'),
-browser_sync = require('browser-sync'),
-cleanCSS = require('gulp-clean-css'),
-reload = browser_sync.reload;
+	stylus = require('gulp-stylus'),
+	postcss = require('gulp-postcss'),
+	autoprefixer = require('autoprefixer'),
+	sourcemaps = require('gulp-sourcemaps'),
+	browser_sync = require('browser-sync'),
+	cleanCSS = require('gulp-clean-css'),
+	rupture = require('rupture'),
+	reload = browser_sync.reload;
 
 const src = "./src/"
 const dist = "./dist/";
@@ -13,7 +14,9 @@ const dist = "./dist/";
 gulp.task('stylus', function() {
 	return gulp.src( src + './assets/stylus/app.styl')
 	.pipe(sourcemaps.init())
-	.pipe(stylus())
+	.pipe(stylus({
+		use: [rupture()]
+	}))
 	.pipe(postcss([
 		autoprefixer()
 		]))

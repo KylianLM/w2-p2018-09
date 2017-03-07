@@ -1,4 +1,3 @@
-
 .Modal
     display none 
     position fixed 
@@ -10,6 +9,15 @@
     overflow auto 
     background rgb(255,255,255)
     animation animatetop .4s
+    +m(bottom)
+        bottom 0
+        top auto
+        height auto
+        animation animatebottom .4s
+        & Modal__content
+            height auto
+        .Modal__content
+            width 100%
     +m(transparence)
         background rgba(255,255,255,.9)
     +e(content)
@@ -19,6 +27,9 @@
         display flex
         flex-direction column
         justify-content center
+        +above(3)
+            width 30%
+            min-width 330px
     +e(title)
         font-size 24 * $px
         color $grey
@@ -53,4 +64,8 @@
 @keyframes animatetop {
     from {top: -100%; opacity: 0}
     to {top: 0; opacity: 1}
+}
+@keyframes animatebottom {
+    from {bottom: -100%; opacity 0}
+    to {bottom: 0%; opacity 1}
 }

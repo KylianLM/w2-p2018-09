@@ -45,15 +45,15 @@
     </div>
     <div class="Modal" id="modalRegister">
         <div class="Modal__content">
-           <span class="close">&times;</span>
-           <h4 class="Modal__title">Nouveau Compte</h4>
-           <form class="Modal__form" action="">
-               <input type="text" class="input" placeholder="Nom">
-               <input type="email" class="input" placeholder="Email">
-               <input type="password" class="input" placeholder="Mot de passe">
-               <input type="submit" value="S'inscrire" class="Modal__btn btn btn--primary btn--large">
-           </form>
-           <p class="Modal__text">En créant un compte, j'accepte les <span class="bold">Conditions générales</span>, les <span class="bold">Conditions de service</span> et 
+         <span class="close">&times;</span>
+         <h4 class="Modal__title">Nouveau Compte</h4>
+         <form class="Modal__form" action="">
+             <input type="text" class="input" placeholder="Nom">
+             <input type="email" class="input" placeholder="Email">
+             <input type="password" class="input" placeholder="Mot de passe">
+             <input type="submit" value="S'inscrire" class="Modal__btn btn btn--primary btn--large">
+         </form>
+         <p class="Modal__text">En créant un compte, j'accepte les <span class="bold">Conditions générales</span>, les <span class="bold">Conditions de service</span> et 
             la <span class="bold">Politique de confidentialité</span>.</p>
         </div>
     </div>
@@ -69,6 +69,56 @@
         </div>
     </div>
 
+    <div class="Modal Modal--bottom Proximity" id="modalProx">
+        <div class="Modal__content">
+            <h4 class="Proximity__title" id="closeProx">4 stations à proximité</h4>
+            <span class="Proximity__close" id="closeProx2"><img src="/assets/img/close.png" alt=""></span>
+            <ul class="Proximity__list">
+                <li class="Proximity__item">
+                <div class="Proximity__nbPlace Proximity__nbPlace--none">0</div>
+                    <div class="Proximity__info">
+                        <div class="Proximity__address">62 rue Saint George <br>75004, Paris</div>
+                        <div class="Proximity__nbStation">Station 355</div>
+                    </div>
+                    <div class="Proximity__star">
+                        <span class="icon icon-star">&#xe901;</span>
+                    </div>
+                </li>
+                <li class="Proximity__item">
+                <div class="Proximity__nbPlace">12</div>
+                    <div class="Proximity__info">
+                        <div class="Proximity__address">5 rue de la Gaîté<br>75003, Paris</div>
+                        <div class="Proximity__nbStation">Sation 356</div>
+                    </div>
+                    <div class="Proximity__star Proximity__star--active">
+                        <span class="icon icon-star">&#xe901;</span>
+                        
+                    </div>
+                </li>
+                <li class="Proximity__item">
+                <div class="Proximity__nbPlace">2</div>
+                    <div class="Proximity__info">
+                        <div class="Proximity__address">56 rue Vieille du Temple <br>75004, Paris</div>
+                        <div class="Proximity__nbStation">Station 357</div>
+                    </div>
+                    <div class="Proximity__star">
+                        <span class="icon icon-star">&#xe901;</span>
+                    </div>
+                </li>
+                <li class="Proximity__item">
+                <div class="Proximity__nbPlace">6</div>
+                    <div class="Proximity__info">
+                        <div class="Proximity__address">3 rue des Rosiers, <br>75005, Paris</div>
+                        <div class="Proximity__nbStation">Station 358</div>
+                    </div>
+                    <div class="Proximity__star">
+                        <span class="icon icon-star">&#xe901;</span>
+                        
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 <div class="Login" id="login">
     <div class="Login__flex">
@@ -78,28 +128,28 @@
             <h1 class="logo__text">Vélib Marker</h1>
         </div>
         <button type="button" class="Login__facebook btn"><img class="Login__icon" src="assets/img/Facebook.png"
-        srcset="/assets/img/Facebook@2x.png 2x,/assets/img/Facebook@3x.png 3x" alt="">Facebook</button>
-        <button type="button" class="Login__google btn"><img class="Login__icon" src="assets/img/Google.png"
-        srcset="/assets/img/Google@2x.png 2x, /assets/img/Google@3x.png 3x" alt="">Google</button>
-        <div class="Login__buttons">
-            <button type="button" class="Login__demi btn btn--light" id="openModalRegister">S'inscrire</button>
-            <button type="button" class="Login__demi btn btn--light" id="openModalLogin">Se connecter</button>
-        </div>
-        <p class="Login__text">En créant un compte, j'accepte les <span class="bold">Conditions générales</span>, les <span class="bold">Conditions de service</span> et 
-            la <span class="bold">Politique de confidentialité</span>.</p>
-        </div>
-    </div>
-    <div class="Map">
-    <div class="Map__nav">
-       <button class="Map__pos btn btn--primary" id="newPosition">Saisir une position</button> 
-       <button class="Map__gps btn btn--square btn--white" id="myPosition"><span class="icon icon-geo">&#xe900;</span></button>
-    </div>
-    <div id="map" class="Map__gMap"></div>
-    </div>
+            srcset="/assets/img/Facebook@2x.png 2x,/assets/img/Facebook@3x.png 3x" alt="">Facebook</button>
+            <button type="button" class="Login__google btn"><img class="Login__icon" src="assets/img/Google.png"
+                srcset="/assets/img/Google@2x.png 2x, /assets/img/Google@3x.png 3x" alt="">Google</button>
+                <div class="Login__buttons">
+                    <button type="button" class="Login__demi btn btn--light" id="openModalRegister">S'inscrire</button>
+                    <button type="button" class="Login__demi btn btn--light" id="openModalLogin">Se connecter</button>
+                </div>
+                <p class="Login__text">En créant un compte, j'accepte les <span class="bold">Conditions générales</span>, les <span class="bold">Conditions de service</span> et 
+                    la <span class="bold">Politique de confidentialité</span>.</p>
+                </div>
+            </div>
+            <div class="Map">
+                <div class="Map__nav">
+                 <button class="Map__pos btn btn--primary" id="newPosition">Saisir une position</button> 
+                 <button class="Map__gps btn btn--square btn--white" id="myPosition"><span class="icon icon-geo">&#xe900;</span></button>
+             </div>
+             <div id="map" class="Map__gMap"></div>
+         </div>
 
-    <script src="assets/js/app.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwi04opaHZwRc1tMZ091xGWGbXU3TdXGs&callback=init&libraries=places">
-</script>
-</body>
-</html>
+         <script src="assets/js/app.js"></script>
+         <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwi04opaHZwRc1tMZ091xGWGbXU3TdXGs&callback=init&libraries=places">
+     </script>
+ </body>
+ </html>

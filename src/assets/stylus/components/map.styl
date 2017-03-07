@@ -13,9 +13,16 @@
 		left 50%
 		position fixed
 		bottom 8 * $margin
+		+above(3)
+			transform translate(0%,0%)
+			width 20%
+			left 8 * $margin
+			min-width 330px
 	+e(pos)
+		cursor pointer
 		temp = 4 * $margin
 		width "calc(calc(100% - 60px) - %s)" % temp
 	+e(gps)
+		cursor pointer
 		color: black
 		font-size 26 * $px
